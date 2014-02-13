@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css">
+  div {
+    width:640px; height:360px;
+    overflow:hidden;
+    margin:0; padding:0;
+  }
+  ul {
+    width:3200px; height:auto;
+    margin:0; padding:0;
+    list-style:none;
+  }
+  #demo2 ul { width:640px; }
+  li {
+    display:block;
+    width:640px; height:360px;
+    margin:0; padding:0;
+    float:left;
+  }
+  li.image1 { background:url(image/image1.jpg); }
+  li.image2 { background:url(image/image2.jpg); }
+  li.image3 { background:url(image/image3.jpg); }
+  li.image4 { background:url(image/image4.jpg); }
+  li.image5 { background:url(image/image5.jpg); }
+  li.image6 { background:url(image/image6.jpg); }
+  li.image7 { background:url(image/image7.jpg); }
+  li.image8 { background:url(image/image8.jpg); }
+  li.image9 { background:url(image/image9.jpg); }
+  li.image10 { background:url(image/image10.jpg); }
+</style>
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+  <script src="../jquery.simpleslideviewer-0.9.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var demo4;
+  $(function(){
+    $('pre code').each(function(){ $(this).html($(this).html().replace(/</g,'&lt;')); });
+    $('#demo1').ssViewer();
+    $('#demo2').ssViewer();
+    $('#demo3').ssViewer();
+    demo4 =$('#demo4').ssViewer();
+    $('#demo5').ssViewer({
+      distance:0.5,
+      onSwipeStart:function(argStatus){
+        var tmpTxt ='onSwipeStart: スワイプが開始されました\n\n';
+        tmpTxt +='currentPageX: '+ argStatus.currentPageX +' /* 現在のページ(x) */\n';
+        tmpTxt +='currentPageY: '+ argStatus.currentPageY +' /* 現在のページ(y) */\n';
+        tmpTxt +='startX: '+ argStatus.startX +' /* スワイプ開始位置(x) */\n';
+        tmpTxt +='startX: '+ argStatus.startX +' /* スワイプ開始位置(x) */\n';
+        tmpTxt +='startY: '+ argStatus.startY +' /* スワイプ開始位置(y) */\n';
+        $('#demo5event textarea').html(tmpTxt);
+      },
+      onSwipeMove:function(argStatus){
+        var tmpTxt ='onSwipeMove: スワイプ中です\n\n';
+        tmpTxt +='currentPageX: '+ argStatus.currentPageX +' /* 現在のページ(x) */\n';
+        tmpTxt +='currentPageY: '+ argStatus.currentPageY +' /* 現在のページ(y) */\n';
+        tmpTxt +='startX: '+ argStatus.startX +' /* スワイプ開始位置(x) */\n';
+        tmpTxt +='startY: '+ argStatus.startY +' /* スワイプ開始位置(y) */\n';
+        tmpTxt +='deltaX: '+ argStatus.deltaX +' /* スワイプ量(x) */\n';
+        tmpTxt +='deltaY: '+ argStatus.deltaY +' /* スワイプ量(y) */\n';
+        $('#demo5event textarea').html(tmpTxt);
+      },
+      onSwipeEnd:function(argStatus){
+        var tmpTxt ='onSwipeEnd: スワイプが終了しました\n\n';
+        tmpTxt +='currentPageX: '+ argStatus.currentPageX +' /* 現在のページ(x) */\n';
+        tmpTxt +='currentPageY: '+ argStatus.currentPageY +' /* 現在のページ(y) */\n';
+        tmpTxt +='startX: '+ argStatus.startX +' /* スワイプ開始位置(x) */\n';
+        tmpTxt +='startY: '+ argStatus.startY +' /* スワイプ開始位置(y) */\n';
+        tmpTxt +='deltaX: '+ argStatus.deltaX +' /* スワイプ量(x) */\n';
+        tmpTxt +='deltaY: '+ argStatus.deltaY +' /* スワイプ量(y) */\n';
+        tmpTxt +='swiped: '+ argStatus.swiped +' /* スワイプしたか？ */\n';
+        $('#demo5event textarea').html(tmpTxt);
+      },
+    });
+  });
+</script>
+</head>
+<body>
+  <h1>simple slide viewer plugin</h1>
+  <p>Version 0.9.0<br>
+    <a href="https://github.com/infograve/jquery.simpleslideviewer">https://github.com/infograve/jquery.simpleslideviewer</a><br>
+    Released under the MIT license<br>
+    <a href="http://sourceforge.jp/projects/opensource/wiki/licenses/MIT_license">http://sourceforge.jp/projects/opensource/wiki/licenses/MIT_license</a>
+  </p>
+  <h2>使い方</h2>
+<pre class="html"><code>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script src="../jquery.simpleslideviewer-0.9.0.js" type="text/javascript"></script>
+<div id="demo">
+  <ul>
+    <li class="image1"></li>
+    <li class="image2"></li>
+    <li class="image3"></li>
+    <li class="image4"></li>
+    <li class="image5"></li>
+    <br style="clear:both;">
+  </ul>
+</div>
+</code></pre>
+<pre class="css"><code>
+div {
+  width:640px; height:360px;
+  overflow:hidden;
+  margin:0; padding:0;
+}
+ul {
+  width:3200px; height:auto;
+  margin:0; padding:0;
+  list-style:none;
+}
+li {
+  display:block;
+  width:640px; height:360px;
+  margin:0; padding:0;
+  float:left;
+}
+li.image1 { background:url(image/image1.jpg); }
+li.image2 { background:url(image/image2.jpg); }
+li.image3 { background:url(image/image3.jpg); }
+li.image4 { background:url(image/image4.jpg); }
+li.image5 { background:url(image/image5.jpg); }
+</code></pre>
+<pre class="javascript"><code>
+$(function(){
+  $('#demo').ssViewer();
+});
+</code></pre>
+  <div id="demo1">
+    <ul>
+      <li class="image1"></li>
+      <li class="image2"></li>
+      <li class="image3"></li>
+      <li class="image4"></li>
+      <li class="image5"></li>
+      <br style="clear:both;">
+    </ul>
+  </div>
+  <h2>縦スライド</h2>
+  <div id="demo2">
+    <ul>
+      <li class="image6"></li>
+      <li class="image7"></li>
+      <li class="image8"></li>
+      <li class="image9"></li>
+      <li class="image10"></li>
+      <br style="clear:both;">
+    </ul>
+  </div>
+  <h2>縦横スライド</h2>
+  <div id="demo3">
+    <ul>
+      <li class="image1"></li>
+      <li class="image2"></li>
+      <li class="image3"></li>
+      <li class="image4"></li>
+      <li class="image5"></li>
+      <li class="image6"></li>
+      <li class="image7"></li>
+      <li class="image8"></li>
+      <li class="image9"></li>
+      <li class="image10"></li>
+      <br style="clear:both;">
+    </ul>
+  </div>
+  <h2>Javascriptでの操作</h2>
+  <div id="demo4">
+    <ul>
+      <li class="image1"></li>
+      <li class="image2"></li>
+      <li class="image3"></li>
+      <li class="image4"></li>
+      <li class="image5"></li>
+      <li class="image6"></li>
+      <li class="image7"></li>
+      <li class="image8"></li>
+      <li class="image9"></li>
+      <li class="image10"></li>
+      <br style="clear:both;">
+    </ul>
+  </div>
+<form id="demo4control">
+  <input type="button" value="demo.rise()" onclick='demo4.rise();'></input>
+  <input type="button" value="demo.drop()" onclick='demo4.drop();'></input>
+  <input type="button" value="demo.forward()" onclick='demo4.forward();'></input>
+  <input type="button" value="demo.rewind()" onclick='demo4.rewind();'></input><br>
+  x:<input name="x" type="text" value="0" size="1"></input> y:<input name="y" type="text" value="0" size="1"></input>
+  <input type="button" value="demo.slideTo(x,y)" onclick='demo4.slideTo(this.form.x.value,this.form.y.value);'></input><br>
+  <input type="button" value="demo.getCurrentPage()" onclick='var tmpV=demo4.getCurrentPage(); window.alert("x:"+tmpV.x+"\ny:"+tmpV.y);'></input>
+  <input type="button" value="demo.getContentPage()" onclick='var tmpV=demo4.getContentPage(); window.alert("x:"+tmpV.x+"\ny:"+tmpV.y);'></input>
+</form>
+  <h2>オプションとイベント</h2>
+<pre class="javascript"><code>
+$(function(){
+  $('#demo').ssViewer({
+    distance:0.5, /* 次のスライドへ移動させる閾値 */
+    onSwipeStart:function(argStatus){ ..... }, /* スワイプ開始時 */
+    onSwipeMove:function(argStatus){ ..... }, /* スワイプ中 */
+    onSwipeEnd:function(argStatus){ ..... } /* スワイプ終了時 */
+  });
+});
+</code></pre>
+  <div id="demo5">
+    <ul>
+      <li class="image1"></li>
+      <li class="image2"></li>
+      <li class="image3"></li>
+      <li class="image4"></li>
+      <li class="image5"></li>
+      <li class="image6"></li>
+      <li class="image7"></li>
+      <li class="image8"></li>
+      <li class="image9"></li>
+      <li class="image10"></li>
+      <br style="clear:both;">
+    </ul>
+  </div>
+<form id="demo5event">
+  <textarea name="display" cols="80" rows="25"></textarea>
+</form>
+<p>&copy; Ko1.Imamura 2014-</p>
+</body>
+</html>
