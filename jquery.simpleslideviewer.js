@@ -1,6 +1,6 @@
 /*
- *            ＿＿            simple slide viewer plugin v0.9.1
- *      ,::::::::｀:.､        https://github.com/infograve/jquery.simpleslideviewer
+ *            ＿＿            simple slide viewer plugin v0.10.0
+ *      ,::::::::｀:.､        http://infograve.github.io/jquery.simpleslideviewer/
  *r─<7三]二[三]ミ､:::ヽ
  * ー´:j::.､::ヽ:{)〈＿〕    for jQuery
  *   {:/`ト .;:{｀/::ヽ_,,    http://jquery.com/
@@ -40,6 +40,7 @@
       isSwipe =true;
       if(argEvent.originalEvent.touches==null) startPosition ={ x:Math.floor(argEvent.pageX-contentPosition.x), y:Math.floor(argEvent.pageY-contentPosition.y) };
       else startPosition ={ x:Math.floor(argEvent.originalEvent.touches[0].pageX-contentPosition.x), y:Math.floor(argEvent.originalEvent.touches[0].pageY-contentPosition.y) };
+      flickDelta ={x:0, y:0};
       setting.onSwipeStart({ currentPageX:currentPage.x, currentPageY:currentPage.y, startX:startPosition.x, startY:startPosition.y });
       argEvent.preventDefault();
     };
@@ -63,13 +64,8 @@
         var tmpY =currentPage.y;
         tmpY +=flickDelta.y>(winSize.height *setting.distance) ? 1: 0;
         tmpY -=flickDelta.y<-(winSize.height *setting.distance) ? 1: 0;
-        var tmpSwiped =fnPagefix(tmpX, tmpY);
-        var tmpStartPosition =startPosition;
-        var tmpDelta =flickDelta;
-        startPosition ={x:0, y:0};
-        flickDelta ={x:0, y:0};
+        fnPagefix(tmpX, tmpY);
         isSwipe =false;
-        setting.onSwipeEnd({ currentPageX:currentPage.x, currentPageY:currentPage.y, startX:tmpStartPosition.x, startY:tmpStartPosition.y, deltaX:tmpDelta.x, deltaY:tmpDelta.y, swiped:tmpSwiped });
       }
       argEvent.preventDefault();
     };
@@ -95,8 +91,9 @@
       tmpTargetY =tmpTargetY<contentPage.y ? tmpTargetY: contentPage.y-1;
       var tmpSwiped =tmpTargetX!=currentPage.x||tmpTargetY!=currentPage.y ? true: false;
       currentPage ={ x:tmpTargetX, y:tmpTargetY };
-      $(svWindow).animate({ scrollTop:(winSize.height *tmpTargetY), scrollLeft:(winSize.width *tmpTargetX) }, 200);
-      return tmpSwiped;
+      $(svWindow).animate({ scrollTop:(winSize.height *tmpTargetY), scrollLeft:(winSize.width *tmpTargetX) }, 200, function(){
+        setting.onSwipeEnd({ currentPageX:currentPage.x, currentPageY:currentPage.y, startX:startPosition.x, startY:startPosition.y, deltaX:flickDelta.x, deltaY:flickDelta.y, swiped:tmpSwiped });
+      });
     }
     
     var fnContentPage =function(){
