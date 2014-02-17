@@ -421,35 +421,3 @@ Small Device Styles
   }
 
 }
-
-
-
-/*******************************************************************************
-Demo Window
-*******************************************************************************/
-div.demo {
-  width:640px; height:360px;
-  overflow:hidden;
-  margin:0; padding:0;
-}
-div.demo ul {
-  width:3200px; height:auto;
-  margin:0; padding:0;
-  list-style:none;
-}
-div.demo ul li {
-  display:block;
-  width:640px; height:360px;
-  margin:0; padding:0;
-  float:left;
-}
-div.demo ul li.image1 { background:url(../images/image1.jpg); }
-div.demo ul li.image2 { background:url(../images/image2.jpg); }
-div.demo ul li.image3 { background:url(../images/image3.jpg); }
-div.demo ul li.image4 { background:url(../images/image4.jpg); }
-div.demo ul li.image5 { background:url(../images/image5.jpg); }
-div.demo ul li.image6 { background:url(../images/image6.jpg); }
-div.demo ul li.image7 { background:url(../images/image7.jpg); }
-div.demo ul li.image8 { background:url(../images/image8.jpg); }
-div.demo ul li.image9 { background:url(../images/image9.jpg); }
-div.demo ul li.image10 { background:url(../images/image10.jpg); }
