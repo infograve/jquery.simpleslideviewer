@@ -1,6 +1,9 @@
 ## jquery.simpleslideviewer について:
 二重になったブロック要素をスワイプ可能にする[jQuery](http://jquery.com/) プラグインです。
 
+## GitPage
+[こっち](http://infograve.github.io/jquery.simpleslideviewer/)にデモとか置いてます。
+
 ## 更新履歴
 
 ### Version 0.10.0 - 2014/02/14
